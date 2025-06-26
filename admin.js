@@ -269,7 +269,7 @@ function downloadMonthlyReport() {
     const hubEmployees = employees.filter(emp => emp.hub === hub);
 
     const rows = [["Employee Name", "Contact Number", "Bank Account Number", "IFSC Code", "Bank Name", "Total Working Days"]];
-    
+
     hubEmployees.forEach((emp, index) => {
       let presentDays = 0;
 
@@ -297,7 +297,6 @@ function downloadMonthlyReport() {
 }
 
 function generateDailyReport() {
-  // Placeholder — implement if needed
   console.log("Generate Daily Report");
 }
 
@@ -312,9 +311,11 @@ function filterAttendanceTable() {
   });
 }
 
-// ====================
-// INIT + Sidebar Handlers
-// ====================
+function togetheru() {
+  console.log("togetheru function called");
+  showPopup("Action completed");
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   populateHubSelects();
   displayEmployees();
