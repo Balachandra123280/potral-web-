@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Attendance Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-page">
+  <div class="marquee">PLEASE GIVE YOUR LOGIN CREDENTIALS</div>
+
+  <div class="login-container" role="form" aria-label="Login form">
+    <h2 class="main-heading">WELCOME</h2>
+    <p class="sub-heading">ATTENDANCE PORTAL</p>
+    <form id="loginForm" autocomplete="off">
+      <div class="input-group">
+        <input type="text" id="username" placeholder="Enter Username" required aria-label="Username" />
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Enter Password" required aria-label="Password" />
+        <i class="fa fa-eye" id="togglePassword" title="Show/Hide Password"></i>
+      </div>
+      <button type="submit">LOGIN</button>
+      <p id="error" class="error-text" role="alert"></p>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorEl = document.getElementById('error');
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordInput.type === 'password' ? 'text' : 'password';
+      passwordInput.type = type;
+      togglePassword.classList.toggle('fa-eye-slash');
+    });
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim().toUpperCase();
+      const password = passwordInput.value.trim();
+      errorEl.innerText = '';
+
+      if (!username || !password) {
+        errorEl.innerText = '⚠️ Both fields are required.';
+        return;
+      }
+
+      const isAdmin = username === 'ADMIN_123' && password === 'Admin_123';
+      const isClient = username === 'CLIENT_123' && password === 'Client_123';
+
+      if (isAdmin) {
+        window.location.href = 'admin.html';
+      } else if (isClient) {
+        window.location.href = 'client.html';
+      } else {
+        errorEl.innerText = '❌ Invalid credentials. Try again.';
+      }
+    });
+  </script>
+</body>
+</html>
